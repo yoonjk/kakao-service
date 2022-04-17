@@ -1,1 +1,36 @@
 
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            authorization-grant-type: authorization_code
+            client-id: 3bb707a704de6befcb956e7811877876
+            client-secret: 3quBdnprm7J6t7XLXhAyTcEfeiKfmqB3
+            redirect-uri: "{baseUrl}/login/auth/code/{registrationId}" 
+            scope:
+              - account_email
+              - profile_nickname
+              - profile_image
+            client-authentication-method: POST
+            client-name: Kakao
+
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+            
+  thymeleaf:
+    cache: false
+  
+  messages:    basename: i18n/message
+    encoding: UTF-8
+    always-use-message-format: true  # MessageFormat을 전체 메시지에 적용할 것인지 여부
+    fallback-to-system-locale: true  # 감지된 locale에 대한 파일이 없는 경우 true: system locale 사용, false : message.properties 파일을 사용 
+    use-code-as-default-message: true # 메시지를 찾지 못했을 때 예외처리 대신 메시지코드를 그대로 반환
+    
+  url:
+    base: http://localhost:8080    
